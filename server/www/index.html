@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0 user-scalable=no">
+	<title>DNS 管理</title>
+	<link rel="stylesheet" href="/bootstrap.min.css">  
+	<script src="/jquery.min.js"></script>
+	<script src="/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div id="info" class="alert alert-info"></div>
+<div style="padding: 10px 10px 10px;">
+	<form class="form-inline" role="form">
+		<div class="input-group">
+			<span class="input-group-addon">域名</span>
+			<input id="domain" type="text" class="form-control" placeholder="google.com">
+		</div>
+		&nbsp;
+		<div class="input-group">
+		<span class="input-group-addon">类型</span>
+		<select id="type" class="form-control">
+			<option value="gfw">GFW</option>
+		       	<option value="adb">Adblock</option>
+		</select>
+	</div>
+	&nbsp;
+	<div class="input-group">
+		<button id="addDomain" type="button" class="btn btn-success">添加</button>
+	</div>
+	<div class="input-group">
+		<button id="delDomain" type="button" class="btn btn-danger">删除</button>
+	</div>
+	</form>
+</div>
+<div style="padding: 10px 10px 10px;">
+	<form class="form-inline" role="form">
+		<div class="input-group">
+			<span class="input-group-addon">本地域名</span>
+			<input id="host" type="text" class="form-control" placeholder="local.lo">
+		</div>
+		&nbsp;
+		<div class="input-group">
+			<span class="input-group-addon">IP</span>
+			<input id="ip" type="text" class="form-control" placeholder="127.0.0.1/::1">
+		</div>
+		&nbsp;
+		<div class="input-group">
+			<button id="addHost" type="button" class="btn btn-success">添加</button>
+		</div>
+	</form>
+</div>
+<div style="padding: 10px 10px 10px;">
+	<form class="form-inline" role="form">
+		<div class="input-group">
+			<span class="input-group-addon">更新地址</span>
+			<input id="url" type="text" class="form-control">
+		</div>
+		&nbsp;
+		<div class="input-group">
+			<button id="update" type="button" class="btn btn-success">更新</button>
+		</div>
+	</form>
+</div>
+
+<script>
+	$(function(){
+		$("#info").hide();
+		var info = $("#info");
+		var toTop = function(){
+			$("html,body").animate({scrollTop:0},"slow");
+		}
+		$("#addDomain").click(function(){
+			var domain = $("#domain");
+			var type = $("#type");
+			if (domain.val() != "") {
+				toTop;
+				$.ajax({url:"/addDomain?domain="+domain.val()+"&type="+type.val(),success:function(result){
+						info.html(result);
+						info.show();
+				}});
+				domain.val("");
+				setTimeout(function(){info.hide()},3000);
+			}
+		});
+		$("#delDomain").click(function(){
+			var domain = $("#domain");
+			if (domain.val() != ""){
+				toTop;
+				$.ajax({url:"/delDomain?domain="+domain.val(),success:function(result){
+					info.html(result);
+					info.show();
+				}});
+				domain.val("");
+				setTimeout(function(){info.hide()},3000);
+			}
+		});
+		$("#addHost").click(function(){
+			var host = $("#host");
+			var ip = $("#ip");
+			if (host.val() != "" && ip.val() != ""){
+				toTop;
+				$.ajax({url:"/addHost?host="+host.val()+"&ip="+ip.val(),success:function(result){
+						info.html(result);
+						info.show();
+				}});
+				host.val("");
+				ip.val("");
+				setTimeout(function(){info.hide()},3000);
+			}
+		});
+		$("#update").click(function(){
+			var url = $("#url");
+			toTop;
+			$.ajax({url:"/update?url="+url.val(),success:function(result){
+					info.html(result);
+					info.show();
+			}});
+			url.val("");
+			setTimeout(function(){info.hide()},3000);
+		});
+
+	});
+</script>
+</body>
+</html>
+
