@@ -2,7 +2,8 @@
 	"chinaDns":"180.76.76.76",
 	"gfwDns":"8.8.8.8",
 	"updateUrl":"http://10.2.2.1/update.conf",
-	"ipsetPath":"/usr/local/etc/godns/ipset.sh",
+	"fireWallPath":"/usr/local/etc/godns/firewall.sh",
+	"ipSetPath":"/usr/local/etc/godns/ipset.sh",
 	"cacheDbPath":"/usr/local/etc/godns/cache.db",
 	"webuipath":"/usr/local/etc/godns/www"
 }

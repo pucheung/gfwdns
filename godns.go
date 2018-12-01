@@ -11,7 +11,7 @@ func main() {
 	h.LoadFromFile()
 	go h.UpdateCron()
 
-	cmd := exec.Command(h.conf.IpsetPath)
+	cmd := exec.Command(h.conf.FireWallPath)
 	cmd.Run()
 
 	startHttp(h)

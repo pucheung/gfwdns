@@ -1,0 +1,18 @@
+#!/bin/sh
+
+wget https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt -O gfw.tmp
+wget https://hg.adblockplus.org/easylistchina/raw-file/tip/easylistchina.txt -O adb.list
+
+cat gfw.tmp |base64 -d >> gfw.list
+cat gfw.list |grep -E '^\|\|[^/*]*$' | sed 's/|//g' | awk '{ print "gfw/"$1 }' >> update.conf
+cat adb.list |grep -E '^\|\|[^/*]*\^$' | sed 's/|//g' | sed 's/\^//g' | awk '{ print "adb/"$1 }' >> update.conf
+
+rm -f gfw.tmp gfw.list adb.list
+
+mkdir -p /usr/local/etc/godns
+cp godns /usr/local/bin/godns
+cp config.json /usr/local/etc/godns/config.json
+cp ipset.linux /usr/local/etc/godns/ipset.sh
+cp firewall.linux /usr/local/etc/godns/firewall.sh
+cp -R www /usr/local/etc/godns/www
+cp update.conf /usr/local/etc/wsstun/www/update.conf

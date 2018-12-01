@@ -8,12 +8,13 @@ import (
 )
 
 type Config struct {
-	ChinaDns    string
-	GfwDns      string
-	UpdateUrl   string
-	CacheDbPath string
-	IpsetPath   string
-	WebuiPath   string
+	ChinaDns     string
+	GfwDns       string
+	UpdateUrl    string
+	CacheDbPath  string
+	IpSetPath    string
+	FireWallPath string
+	WebuiPath    string
 }
 
 func (config *Config) LoadConfig() {
