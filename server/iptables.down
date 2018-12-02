@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ipset -F gfw
+ipset -X gfw

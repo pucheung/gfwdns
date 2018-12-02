@@ -3,7 +3,11 @@ package main
 import (
 	"github.com/miekg/dns"
 	"os/exec"
+	"os/signal"
+	"syscall"
 )
+
+var sigs = make(chan os.Signal, 1)
 
 func main() {
 	h := new(Handle)
@@ -11,8 +15,16 @@ func main() {
 	h.LoadFromFile()
 	go h.UpdateCron()
 
-	cmd := exec.Command(h.conf.FireWallPath)
+	cmd := exec.Command(h.conf.UpScript)
 	cmd.Run()
+
+	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+	go func(){
+		<-sigs
+		cmd := exec.Commant(h.conf.DownScript)
+		cmd.Run()
+		os.Exit(1)
+	}()
 
 	startHttp(h)
 

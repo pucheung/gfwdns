@@ -13,7 +13,8 @@ type Config struct {
 	UpdateUrl    string
 	CacheDbPath  string
 	IpSetPath    string
-	FireWallPath string
+	UpScript     string
+	DownScript   string
 	WebuiPath    string
 }
 

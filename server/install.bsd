@@ -13,6 +13,7 @@ mkdir -p /usr/local/etc/godns
 cp godns /usr/local/bin/godns
 cp config.json /usr/local/etc/godns/config.json
 cp ipset.bsd /usr/local/etc/godns/ipset.sh
-cp firewall.bsd /usr/local/etc/godns/firewall.sh
+cp ipfw.up /usr/local/etc/godns/firewall.up
+cp ipfw.down /usr/local/etc/godns/firewall.down
 cp -R www /usr/local/etc/godns/www
 cp update.conf /usr/local/etc/wsstun/www/update.conf

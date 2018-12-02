@@ -210,10 +210,10 @@ func (h *Handle) checkDomain(dtkey, domain string) string {
 	}
 	dtkey = h.keyGen(find)
 	dtype, found = h.c.Get(dtkey)
-	if !found {
-		return "normal"
+	if found {
+		return dtype.(string)
 	}
-	return dtype.(string)
+	return	"normal"
 }
 
 func (h *Handle) isIpQuery(q dns.Question) int {

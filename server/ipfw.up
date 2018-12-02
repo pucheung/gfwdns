@@ -1,5 +1,4 @@
 #!/bin/sh
 
-ipfw table gfw destroy
 ipfw table gfw create 
 ipfw table gfw add 8.8.8.8
