@@ -93,7 +93,7 @@ func (h *Handle) Do(w dns.ResponseWriter, req *dns.Msg) {
 				case _Ip6Query:
 					rr_header := dns.RR_Header{
 						Name:   q.Name,
-						Rrtype: dns.TypeAAAA,
+					Rrtype: dns.TypeAAAA,
 						Class:  dns.ClassINET,
 						Ttl:    3000,
 					}
@@ -121,7 +121,10 @@ func (h *Handle) Do(w dns.ResponseWriter, req *dns.Msg) {
 						case _Ip4Query:
 							if ip, ok := a.(*dns.A); ok {
 								cmd := exec.Command(h.conf.IpSetPath,  ip.A.String())
-								cmd.Run()
+								err := cmd.Run()
+								if err != nil {
+									log.Printf("ipSet %v\n", err)
+								}
 							}
 						case _Ip6Query:
 							if ip, ok := a.(*dns.AAAA); ok {
@@ -246,7 +249,7 @@ func (h *Handle) Update(url string) {
 
 	resp, err := http.Get(url)
 	if err != nil {
-		log.Printf("Http %s", err)
+		log.Printf("Get UpdateUrl Error %s", err)
 		return
 	}
 	defer resp.Body.Close()

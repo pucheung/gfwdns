@@ -9,7 +9,7 @@ cd server
 
 
 打开 http://myIp:8081
-更新地址 http://myIp:8081/update.conf
+第一次安装需要手动更新 自动更新在每天半夜12点
 自己添加的地址需要自己备份。程序保存在 /usr/local/etc/godns/cache.db 中，一旦删除就没法恢复了。
 
 添加服务Linux
