@@ -121,10 +121,7 @@ func (h *Handle) Do(w dns.ResponseWriter, req *dns.Msg) {
 						case _Ip4Query:
 							if ip, ok := a.(*dns.A); ok {
 								cmd := exec.Command(h.conf.IpSetPath,  ip.A.String())
-								err := cmd.Run()
-								if err != nil {
-									log.Printf("ipSet %v\n", err)
-								}
+								cmd.Run()
 							}
 						case _Ip6Query:
 							if ip, ok := a.(*dns.AAAA); ok {
