@@ -11,3 +11,21 @@ cd server
 打开 http://myIp:8081
 更新地址 http://myIp:8081/update.conf
 自己添加的地址需要自己备份。程序保存在 /usr/local/etc/godns/cache.db 中，一旦删除就没法恢复了。
+
+添加服务Linux
+vim /etc/rc.d/rc.local
+
+#!/bin/bash
+nohup /usr/local/bin/godns >> /var/log/godns.log &
+
+保存退出
+chmod +x /etc/rc.d/rc.local
+sudo systemctl start rc-local.service
+
+添加服务FreeBSD
+vi /etc/rc.conf
+godns_enable="YES"
+
+保存退出
+cd /usr/local/etc/rc.d
+./godns start 或者 reboot
