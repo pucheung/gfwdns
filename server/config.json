@@ -4,7 +4,7 @@
 	"updateUrl":"http://10.2.2.1:8081/update.conf",
 	"ipSetPath":"/usr/local/etc/godns/ipset.sh",
 	"upScript":"/usr/local/etc/godns/firewall.up",
-	"downScript":"/usr/loca/etc/godns/firewall.down",
+	"downScript":"/usr/local/etc/godns/firewall.down",
 	"cacheDbPath":"/usr/local/etc/godns/cache.db",
 	"webuipath":"/usr/local/etc/godns/www"
 }
