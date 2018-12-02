@@ -29,3 +29,6 @@ godns_enable="YES"
 保存退出
 cd /usr/local/etc/rc.d
 ./godns start 或者 reboot
+
+由于使用了nohup所以无法stop 和 restart 只能 kill `cat /var/run/godns.pid` 来退出程序
+kill -9 `cat /var/run/godns.pid` 由于信号问题将不会执行firewall.down脚本 再次启动的时候会出现防火墙的一些警告信息 gfw 表已经存在什么的的
