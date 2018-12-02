@@ -1,0 +1,13 @@
+依赖库
+go get github.com/miekg/dns
+go get github.com/patrickmn/go-cache
+
+go build godns.go config.go handle.go httpmanage.go
+mv godns server/
+cd server 
+./install.bsd Or ./install.linux sudo 或者切换ROOT账户
+
+
+打开 http://myIp:8081
+更新地址 http://myIp:8081/update.conf
+自己添加的地址需要自己备份。程序保存在 /usr/local/etc/godns/cache.db 中，一旦删除就没法恢复了。
