@@ -16,4 +16,4 @@ cp ipset.linux /usr/local/etc/godns/ipset.sh
 cp iptables.up /usr/local/etc/godns/firewall.up
 cp iptables.down /usr/local/etc/godns/firewall.down
 cp -R www /usr/local/etc/godns/www
-cp update.conf /usr/local/etc/wsstun/www/update.conf
+cp update.conf /usr/local/etc/godns/www/update.conf

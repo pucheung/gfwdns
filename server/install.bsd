@@ -17,4 +17,4 @@ cp ipfw.up /usr/local/etc/godns/firewall.up
 cp ipfw.down /usr/local/etc/godns/firewall.down
 cp godns.bsd /usr/local/etc/rc.d/godns
 cp -R www /usr/local/etc/godns/www
-cp update.conf /usr/local/etc/wsstun/www/update.conf
+cp update.conf /usr/local/etc/godns/www/update.conf
