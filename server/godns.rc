@@ -1,0 +1,25 @@
+#! /bin/sh
+#
+
+# PROVIDE: godns
+# REQUIRE: DAEMON
+# KEYWORD: shutdown
+
+#
+# Add the following lines to /etc/rc.conf to enable godns:
+#
+# godns_enable="YES"
+
+. /etc/rc.subr
+
+name="godns"
+rcvar="godns_enable"
+
+load_rc_config $name
+
+
+command="/usr/bin/nohup"
+command_args="/usr/local/bin/godns >>/var/log/godns.log &"
+
+
+run_rc_command "$1"

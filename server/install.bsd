@@ -6,5 +6,5 @@ cp config.json /usr/local/etc/godns/config.json
 cp ipset.bsd /usr/local/etc/godns/ipset.sh
 cp ipfw.up /usr/local/etc/godns/firewall.up
 cp ipfw.down /usr/local/etc/godns/firewall.down
-cp godns.bsd /usr/local/etc/rc.d/godns
+cp godns.rc /usr/local/etc/rc.d/godns
 cp -R www /usr/local/etc/godns/www
