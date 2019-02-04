@@ -1,11 +1,12 @@
 依赖库
 go get github.com/miekg/dns
 go get github.com/patrickmn/go-cache
+go get github.com/robfig/cron
 
 go build godns.go config.go handle.go httpmanage.go
 mv godns server/
 cd server 
-./install.bsd Or ./install.linux sudo 或者切换ROOT账户
+sudo ./install.linux 
 
 
 打开 http://myIp:8081
@@ -22,13 +23,5 @@ nohup /usr/local/bin/godns >> /var/log/godns.log &
 chmod +x /etc/rc.d/rc.local
 sudo systemctl start rc-local.service
 
-添加服务FreeBSD
-vi /etc/rc.conf
-godns_enable="YES"
-
-保存退出
-cd /usr/local/etc/rc.d
-./godns start 或者 reboot
-
-由于使用了nohup所以无法stop 和 restart 只能 kill `cat /var/run/godns.pid` 来退出程序
-kill -9 `cat /var/run/godns.pid` 由于信号问题将不会执行firewall.down脚本 再次启动的时候会出现防火墙的一些警告信息 gfw 表已经存在什么的
+停止
+kill -9 `cat /var/run/godns.pid` 
