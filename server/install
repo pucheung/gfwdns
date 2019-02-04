@@ -4,7 +4,7 @@
 mkdir -p /usr/local/etc/godns
 cp godns /usr/local/bin/godns
 cp config.json /usr/local/etc/godns/config.json
-cp ipset.linux /usr/local/etc/godns/ipset.sh
+cp ipset.sh /usr/local/etc/godns/ipset.sh
 cp iptables.up /usr/local/etc/godns/firewall.up
 cp iptables.down /usr/local/etc/godns/firewall.down
 cp -R www /usr/local/etc/godns/www

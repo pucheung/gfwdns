@@ -47,16 +47,6 @@ func (h *Handle) Init() {
 	h.conf = conf
 }
 
-func (h *Handle) UpdateCron() {
-	for {
-		now := time.Now()
-		next := now.Add(time.Hour * 24)
-		next = time.Date(next.Year(), next.Month(), next.Day(), 0, 0, 0, 0, now.Location())
-		t := time.NewTimer(next.Sub(now))
-		<-t.C
-		h.Update(h.conf.UpdateUrl)
-	}
-}
 
 func (h *Handle) Do(w dns.ResponseWriter, req *dns.Msg) {
 	dnsclient := new(dns.Client)

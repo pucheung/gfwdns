@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/miekg/dns"
+	"github.com/robfig/cron"
 	"os"
 	"os/exec"
 	"os/signal"
@@ -18,7 +19,12 @@ func main() {
 	h := new(Handle)
 	h.Init()
 	h.LoadFromFile()
-	go h.UpdateCron()
+	crond := cron.New()
+	spec := "* * 0 * * *"
+	crond.AddFunc(spec, func(){
+		h.Update(h.conf.UpdateUrl)
+	})
+	crond.Start()
 
 	if pid := syscall.Getpid(); pid != 1{
 		fpid, err := os.OpenFile(pidfile,os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0644)
@@ -36,11 +42,6 @@ func main() {
 	signal.Notify(sigs, syscall.SIGKILL, syscall.SIGTERM)
 	go func(){
 		<-sigs
-		cmd := exec.Command(h.conf.DownScript)
-		err := cmd.Run()
-		if err != nil {
-			log.Printf("DownScript Error %v", err)
-		}
 		os.Remove(pidfile)
 		os.Exit(1)
 	}()
