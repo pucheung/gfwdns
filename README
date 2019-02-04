@@ -6,7 +6,7 @@ go get github.com/robfig/cron
 go build godns.go config.go handle.go httpmanage.go
 mv godns server/
 cd server 
-sudo ./install.linux 
+sudo ./install 
 
 
 打开 http://myIp:8081
