@@ -40,13 +40,12 @@ type Handle struct {
 }
 
 func (h *Handle) Init() {
-	c := cache.New(5*time.Minute, 10*time.Minute)
+	c := cache.New(5*time.Minute, 5*time.Minute)
 	conf := &Config{}
 	conf.LoadConfig()
 	h.c = c
 	h.conf = conf
 }
-
 
 func (h *Handle) Do(w dns.ResponseWriter, req *dns.Msg) {
 	dnsclient := new(dns.Client)
@@ -83,7 +82,7 @@ func (h *Handle) Do(w dns.ResponseWriter, req *dns.Msg) {
 				case _Ip6Query:
 					rr_header := dns.RR_Header{
 						Name:   q.Name,
-					Rrtype: dns.TypeAAAA,
+						Rrtype: dns.TypeAAAA,
 						Class:  dns.ClassINET,
 						Ttl:    3000,
 					}
@@ -110,7 +109,7 @@ func (h *Handle) Do(w dns.ResponseWriter, req *dns.Msg) {
 						switch ipQuery {
 						case _Ip4Query:
 							if ip, ok := a.(*dns.A); ok {
-								cmd := exec.Command(h.conf.IpSetPath,  ip.A.String())
+								cmd := exec.Command(h.conf.IpSetPath, ip.A.String())
 								cmd.Run()
 							}
 						case _Ip6Query:
@@ -203,7 +202,7 @@ func (h *Handle) checkDomain(dtkey, domain string) string {
 	if found {
 		return dtype.(string)
 	}
-	return	"normal"
+	return "normal"
 }
 
 func (h *Handle) isIpQuery(q dns.Question) int {
