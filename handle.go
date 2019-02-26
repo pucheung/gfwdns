@@ -40,7 +40,7 @@ type Handle struct {
 }
 
 func (h *Handle) Init() {
-	c := cache.New(5*time.Minute, 5*time.Minute)
+	c := cache.New(2*time.Minute, 1*time.Minute)
 	conf := &Config{}
 	conf.LoadConfig()
 	h.c = c
@@ -64,7 +64,7 @@ func (h *Handle) Do(w dns.ResponseWriter, req *dns.Msg) {
 			w.WriteMsg(msg)
 		} else {
 			dtype := h.checkDomain(dtkey, UnFqdn(q.Name))
-			//	fmt.Printf("Find %s Type [%s]", UnFqdn(q.Name), dtype)
+			//fmt.Printf("Find %s Type [%s]\n", UnFqdn(q.Name), dtype)
 			switch dtype {
 			case "adb":
 				msg := new(dns.Msg)
