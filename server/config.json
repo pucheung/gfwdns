@@ -1,5 +1,5 @@
 {
-	"chinaDns":"180.76.76.76",
+	"chinaDns":"114.114.114.114",
 	"gfwDns":"8.8.8.8",
 	"updateUrl":"https://raw.githubusercontent.com/pucheung/dnsupdate/master/update.conf",
 	"ipSetPath":"/usr/local/etc/godns/ipset.sh",
