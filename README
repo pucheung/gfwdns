@@ -24,4 +24,4 @@ chmod +x /etc/rc.d/rc.local
 sudo systemctl start rc-local.service
 
 停止
-kill -9 `cat /var/run/godns.pid` 
+kill -15 `cat /var/run/godns.pid` 

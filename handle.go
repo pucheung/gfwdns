@@ -109,12 +109,12 @@ func (h *Handle) Do(w dns.ResponseWriter, req *dns.Msg) {
 						switch ipQuery {
 						case _Ip4Query:
 							if ip, ok := a.(*dns.A); ok {
-								cmd := exec.Command(h.conf.IpSetPath, ip.A.String())
+								cmd := exec.Command("/usr/sbin/ipset", "add", "gfw", ip.A.String())
 								cmd.Run()
 							}
 						case _Ip6Query:
 							if ip, ok := a.(*dns.AAAA); ok {
-								cmd := exec.Command(h.conf.IpSetPath, ip.AAAA.String())
+								cmd := exec.Command("/usr/sbin/ipset", "add", "gfw", ip.AAAA.String())
 								cmd.Run()
 							}
 						}

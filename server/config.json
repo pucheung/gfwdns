@@ -2,7 +2,6 @@
 	"chinaDns":"114.114.114.114",
 	"gfwDns":"8.8.8.8",
 	"updateUrl":"https://raw.githubusercontent.com/pucheung/dnsupdate/master/update.conf",
-	"ipSetPath":"/usr/local/etc/godns/ipset.sh",
 	"upScript":"/usr/local/etc/godns/firewall.up",
 	"downScript":"/usr/local/etc/godns/firewall.down",
 	"cacheDbPath":"/usr/local/etc/godns/cache.db",
